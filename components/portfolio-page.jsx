@@ -11,11 +11,14 @@ import {
   BriefcaseBusiness,
   Layers3,
   Mail,
+  Monitor,
   MoveRight,
   PenTool,
   Phone,
   Ruler,
   Sparkles,
+  Smartphone,
+  Tablet,
 } from "lucide-react";
 import HeroCanvas from "./hero-canvas";
 
@@ -195,6 +198,7 @@ const capabilities = [
 
 const nav = [
   { label: "作品", href: "#work" },
+  { label: "适配", href: "#responsive" },
   { label: "壁时", href: "#walltime" },
   { label: "能力", href: "#capability" },
   { label: "关于", href: "#about" },
@@ -250,6 +254,27 @@ const contactItems = [
   },
 ];
 
+const responsivePreviews = [
+  {
+    icon: Smartphone,
+    title: "手机浏览",
+    src: "/assets/responsive/mobile-home.jpg",
+    text: "首屏、项目卡和联系区改为单列阅读，按钮全宽排列，长标题在小屏上保持可读。",
+  },
+  {
+    icon: Tablet,
+    title: "平板浏览",
+    src: "/assets/responsive/tablet-work.jpg",
+    text: "项目墙和作品完善区使用两列节奏，适合横竖屏平板展示作品图和项目叙事。",
+  },
+  {
+    icon: Monitor,
+    title: "电脑浏览",
+    src: "/assets/responsive/desktop-case.jpg",
+    text: "桌面端保留大标题、大图和分栏案例结构，强化 Apple 产品页式的沉浸阅读。",
+  },
+];
+
 function useLenisAndGsap() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -302,7 +327,7 @@ export default function PortfolioPage() {
         <a className="grid h-11 w-11 place-items-center border border-white/15 text-xs font-semibold" href="#top" aria-label="曹佳航作品集首页">
           曹
         </a>
-        <nav className="hidden justify-center gap-7 text-sm text-paper/70 md:flex" aria-label="主导航">
+        <nav className="hidden justify-center gap-4 text-sm text-paper/70 sm:flex md:gap-7" aria-label="主导航">
           {nav.map((item) => (
             <a className="transition hover:text-copper" key={item.href} href={item.href}>
               {item.label}
@@ -325,7 +350,7 @@ export default function PortfolioPage() {
             <p className="mt-8 max-w-[590px] text-[clamp(1.05rem,1.55vw,1.35rem)] leading-relaxed text-paper/70">
               一套精选产品设计作品集，聚焦智能产品、三维建模、色彩材质工艺、包装设计与产品可视化。
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a className="button primary" href="#work">
                 精选项目
                 <MoveRight size={18} />
@@ -361,6 +386,33 @@ export default function PortfolioPage() {
                 <span className="block text-xs text-paper/45">{project.year}</span>
                 <strong className="mt-1 block max-w-[170px] leading-tight text-paper/80">{project.title}</strong>
               </a>
+            ))}
+          </div>
+        </section>
+
+        <section id="responsive" className="section-wrap responsive-section" aria-labelledby="responsive-title">
+          <SectionTitle
+            id="responsive-title"
+            kicker="多设备适配"
+            title="手机、平板、电脑打开都保持产品官网级阅读节奏。"
+            text="页面按不同屏幕重新控制标题尺寸、项目网格、按钮宽度和图片比例，让作品集在投递链接、面试投屏和手机转发时都能稳定展示。"
+          />
+          <div className="device-grid">
+            {responsivePreviews.map(({ icon: Icon, title, src, text }) => (
+              <article className="device-card" key={title}>
+                <div className="device-card-head">
+                  <div className="device-icon">
+                    <Icon size={19} />
+                  </div>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{text}</p>
+                  </div>
+                </div>
+                <div className="device-frame">
+                  <img src={src} alt={`${title}效果预览`} />
+                </div>
+              </article>
             ))}
           </div>
         </section>
