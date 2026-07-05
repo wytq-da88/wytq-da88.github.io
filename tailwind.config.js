@@ -3,18 +3,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        carbon: "#0A0A09",
-        graphite: "#11110F",
-        paper: "#E8DFCF",
-        copper: "#C59B63",
-        sage: "#7F947F",
-        mist: "#8AA8C4",
+        paper: "#F7F7F5",
+        canvas: "#FFFFFF",
+        ink: "#111111",
+        muted: "#666666",
+        coral: "#FF6B4A",
+        blush: "#FFF6F1",
       },
       fontFamily: {
-        sans: ["Inter", "SF Pro Display", "PingFang SC", "Microsoft YaHei", "system-ui", "sans-serif"],
+        sans: ["Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 26px 90px rgba(0,0,0,0.32)",
+        soft: "0 18px 48px rgba(45,38,32,0.08)",
       },
     },
   },

@@ -1,26 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Lenis from "lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   ArrowUpRight,
-  Box,
+  Blocks,
+  Camera,
+  CheckCircle2,
+  LayoutGrid,
   Mail,
-  Monitor,
-  MoveRight,
-  PenTool,
+  Palette,
   Phone,
   Ruler,
   Sparkles,
-  Smartphone,
-  Tablet,
 } from "lucide-react";
-import HeroCanvas from "./hero-canvas";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const contact = {
   phone: "13333384178",
@@ -28,690 +22,482 @@ const contact = {
 };
 
 const nav = [
-  { label: "目录", href: "#catalog" },
+  { label: "首页", href: "#top" },
   { label: "作品", href: "#work" },
-  { label: "过程", href: "#process" },
-  { label: "壁时", href: "#walltime" },
-  { label: "3D", href: "#three" },
+  { label: "方法", href: "#process" },
+  { label: "图库", href: "#gallery" },
+  { label: "能力", href: "#skills" },
   { label: "联系", href: "#contact" },
 ];
 
-const heroStats = [
-  ["06", "核心项目"],
-  ["3D", "互动展示"],
-  ["PDF", "作品集叙事"],
-  ["全端", "响应式适配"],
+const stats = [
+  ["06", "精选项目"],
+  ["24+", "整理后的作品图"],
+  ["100%", "中文求职表达"],
+  ["全端", "手机/平板/电脑适配"],
 ];
 
 const projects = [
   {
     id: "walltime",
-    no: "01",
+    number: "01",
     title: "壁时",
-    subtitle: "东方情绪疗愈桌面伴侣",
-    category: "毕业设计 / 智能产品 / AI 桌面摆件",
+    subtitle: "AI 桌面情绪陪伴产品",
+    category: "毕业设计 / 智能产品 / CMF",
     year: "2026",
     image: "/assets/project-boards/walltime-board.jpg",
     detailImage: "/assets/walltime-detail.png",
+    tone: "核心项目",
     summary:
-      "以玉璧、节气、漆金质感和低打扰交互为核心，把时间管理转译成一个有仪式感的桌面智能产品。",
-    tags: ["东方未来感", "智能陪伴", "CMF", "交互秩序"],
-    story: {
-      source: "从东方时间观、桌面陪伴和学习工作焦虑切入，寻找“提醒”之外更柔和的时间管理方式。",
-      refine: "提取玉璧环形、节气秩序、金属边界和透光屏幕，建立产品语义与情绪识别点。",
-      process: "用场景、草图、结构层级、屏幕信息和 CMF 推导，让概念从器物意象落到可展示产品。",
-      render: "最终形成黑金漆面、中心屏幕、环形光晕和桌面底座的完整视觉系统。",
-    },
+      "围绕桌面时间管理、情绪陪伴和东方器物意象，把提醒工具转译成低打扰的桌面智能产品。",
+    points: ["东方时间观", "情绪疗愈", "桌面场景", "CMF 推导"],
+    story: [
+      ["项目背景", "桌面提醒产品容易变成压力源，壁时尝试用更柔和的方式陪伴学习、办公和独处场景。"],
+      ["设计提炼", "从玉璧、节气、光晕和桌面器物中提取圆环、透光界面、温润边界和仪式感。"],
+      ["过程补强", "适合继续补草图、用户旅程、屏幕信息层级、结构爆炸图和 App 联动页面。"],
+    ],
   },
   {
-    id: "modeling",
-    no: "02",
-    title: "工业建模合集",
-    subtitle: "Rhino + KeyShot 产品可视化",
-    category: "建模 / 渲染 / 爆炸图",
-    year: "2025-2026",
-    image: "/assets/project-boards/modeling-board.jpg",
+    id: "gamepad",
+    number: "02",
+    title: "游戏手柄",
+    subtitle: "数码产品建模与渲染",
+    category: "Rhino 建模 / KeyShot 渲染",
+    year: "2025",
+    image: "/assets/game-console-wide.jpg",
+    detailImage: "/assets/game-console-front.jpg",
+    tone: "建模强项",
     summary:
-      "把分散的犀牛建模、硬表面产品、组件拆解和 KeyShot 渲染整理成可验证的建模能力展示。",
-    tags: ["犀牛建模", "硬表面", "爆炸图", "材质灯光"],
-    story: {
-      source: "从课程建模练习里筛选结构完整、比例清楚、渲染质量高的作品，避免堆截图。",
-      refine: "按曲面控制、硬件细节、结构拆解和产品摄影四类能力重新组织。",
-      process: "补充线框、零件关系、建模步骤和细节节点，让面试官能看懂建模逻辑。",
-      render: "统一 16:10 展示板和暗色背景，强化产品形体和材料边界。",
-    },
+      "用完整的数码产品建模图展示硬表面比例、按键细节、曲面控制和消费电子渲染能力。",
+    points: ["硬表面建模", "按键细节", "产品比例", "材质高光"],
+    story: [
+      ["展示价值", "手柄比普通课堂小件更容易体现曲面控制、握持比例、装配关系和产品摄影感。"],
+      ["页面处理", "网站中用横向大图做视觉入口，详情区展示正面和局部细节，避免图片散乱。"],
+      ["后续优化", "可以补握持姿态、按键爆炸图、CMF 色彩方案和竞品尺寸对比。"],
+    ],
+  },
+  {
+    id: "earbuds",
+    number: "03",
+    title: "无线蓝牙耳机",
+    subtitle: "小型数码产品 CMF 表达",
+    category: "产品渲染 / CMF / 细节图",
+    year: "2025",
+    image: "/assets/earbuds-open.jpg",
+    detailImage: "/assets/earbuds-detail-web.jpg",
+    tone: "视觉补强",
+    summary:
+      "用耳机开盖、充电仓和局部细节展示小体量产品的材质、倒角、比例和消费电子质感。",
+    points: ["消费电子", "细节渲染", "圆角控制", "生活方式图"],
+    story: [
+      ["选择原因", "耳机项目更适合展示消费电子产品的材质、比例、细节处理和生活方式气质。"],
+      ["设计重点", "通过开盖角度、耳机收纳关系、仓体倒角和细节材质强调产品完成度。"],
+      ["后续优化", "可以继续补佩戴场景、CMF 版本、尺寸图和包装开箱页。"],
+    ],
   },
   {
     id: "cooling",
-    no: "03",
-    title: "手持散热风扇",
-    subtitle: "数码配件产品渲染",
-    category: "产品渲染 / 结构细节",
+    number: "04",
+    title: "手机散热风扇",
+    subtitle: "游戏场景数码配件",
+    category: "结构表达 / 产品渲染",
     year: "2026",
     image: "/assets/project-boards/cooling-board.jpg",
+    detailImage: "/assets/cooling-fan.jpg",
+    tone: "结构表达",
     summary:
-      "围绕夹持结构、出风层级、屏幕细节和红黑材质对比，呈现小型数码配件的产品表达。",
-    tags: ["数码配件", "细节节点", "KeyShot", "场景渲染"],
-    story: {
-      source: "从手机游戏、长时间握持和设备散热场景出发，定位为桌面与移动两用配件。",
-      refine: "用夹持方式、风道层级、屏幕反馈和按键位置表达产品功能。",
-      process: "补充功能路径、局部结构、尺寸约束和使用场景，增强方案可信度。",
-      render: "通过红黑对比、硬边倒角和局部高光强化科技配件质感。",
-    },
-  },
-  {
-    id: "pill",
-    no: "04",
-    title: "便携式磁吸药盒",
-    subtitle: "日常健康产品改良",
-    category: "产品改良 / CMF / 使用流程",
-    year: "2025",
-    image: "/assets/project-boards/pill-board.jpg",
-    detailImage: "/assets/pill-box-open.jpg",
-    summary:
-      "从携带、分区、开合、安全和情绪化体验出发，探索磁吸药盒的结构与亲和色彩。",
-    tags: ["用户痛点", "磁吸结构", "CMF", "便携场景"],
-    story: {
-      source: "针对常见药盒不易携带、分区混乱、开合体验弱和视觉冰冷的问题做改良。",
-      refine: "将磁吸开合、独立药格、低饱和紫色和圆角比例组合成亲和的日用品语言。",
-      process: "通过场景、结构、CMF 和使用流程把单一外观练习转成完整产品改良项目。",
-      render: "用闭合、打开、局部细节和生活化场景图说明产品实际使用方式。",
-    },
+      "围绕夹持结构、出风层级、屏幕反馈和高对比 CMF，呈现游戏外设类产品的功能表达。",
+    points: ["夹持结构", "风道层级", "屏幕反馈", "高对比 CMF"],
+    story: [
+      ["场景定位", "面向手机游戏、长时间握持和移动散热需求，产品语义清楚，功能入口容易理解。"],
+      ["版式策略", "用信息卡拆解功能点，让浏览者先看懂产品用途，再看渲染和细节。"],
+      ["后续优化", "可以补使用手势、装配图、散热路径和不同手机尺寸适配。"],
+    ],
   },
   {
     id: "juicer",
-    no: "05",
+    number: "05",
     title: "便携式果汁机",
-    subtitle: "用户研究与产品定义",
-    category: "研究 / 产品定义 / 建模",
+    subtitle: "用户研究到产品定义",
+    category: "用户研究 / 产品定义 / 建模",
     year: "2025",
     image: "/assets/project-boards/juicer-board.jpg",
+    detailImage: "/assets/juicer-process.jpg",
+    tone: "过程完整",
     summary:
-      "从家庭、办公、户外、辅食和车载等场景梳理产品定位，把调研转化为容量、握持和清洗方案。",
-    tags: ["用户研究", "场景定义", "尺寸推导", "产品建模"],
-    story: {
-      source: "把多场景饮用需求拆成家庭、办公、户外、辅食、车载五类使用路径。",
-      refine: "提炼便携、易清洗、握持稳定和安全启动四个核心机会点。",
-      process: "用竞品、尺寸、草图和模型推导产品比例，避免只做外观造型。",
-      render: "以过程板和模型图展示从研究到形体的转译能力。",
-    },
+      "从家庭、办公、户外、辅食和车载场景梳理需求，把调研转成容量、握持、清洗和安全启动方案。",
+    points: ["用户场景", "需求拆解", "尺寸推导", "过程叙事"],
+    story: [
+      ["保留原因", "这个项目适合证明你不是只会渲染，也能从场景和用户需求推导产品方向。"],
+      ["内容整理", "网站中突出研究、定位和模型过程，把它作为设计思考能力的补充项目。"],
+      ["后续优化", "可以补竞品矩阵、用户画像、清洗流程、刀头安全结构和使用情境图。"],
+    ],
   },
   {
     id: "packaging",
-    no: "06",
+    number: "06",
     title: "涪陵榨菜包装",
     subtitle: "传统食品品牌视觉更新",
     category: "包装设计 / 品牌视觉系统",
     year: "2026",
     image: "/assets/project-boards/packaging-board-clean.jpg",
+    detailImage: "/assets/packaging-board.png",
+    tone: "视觉延展",
     summary:
-      "以地域插画、货架识别、系列层级和现代食品品牌感为重点，完成传统食品包装的视觉更新。",
-    tags: ["包装系统", "地域插画", "货架识别", "品牌延展"],
-    story: {
-      source: "从地域文化、消费场景和货架竞争出发，重塑传统食品年轻化表达。",
-      refine: "提取涪陵地域元素、口味色彩、字体层级和插画系统作为包装识别核心。",
-      process: "把单张包装扩展成系列化、货架化和详情页可延展的品牌视觉方案。",
-      render: "用清晰展示板呈现主视觉、系列包装和商业应用感。",
-    },
+      "以地域插画、口味色彩、货架识别和系列层级为重点，展示包装和视觉系统能力。",
+    points: ["包装系统", "地域插画", "货架识别", "系列化"],
+    story: [
+      ["展示价值", "包装项目能补足产品设计作品集里的视觉系统和商业落地感。"],
+      ["页面处理", "用清晰的品牌卡片和大图排版替代复杂展板，让手机浏览也能看清层级。"],
+      ["后续优化", "可以补包装展开图、货架模拟、口味系列和社交媒体传播图。"],
+    ],
   },
 ];
 
 const processSteps = [
   {
-    step: "01",
-    title: "创意来源",
-    text: "先说明灵感从哪里来：文化意象、用户场景、竞品问题或生活观察，让作品不是凭空造型。",
+    title: "筛选",
+    text: "先删掉课程感强、完成度弱、与你求职方向不匹配的内容，保留能证明产品设计能力的项目。",
   },
   {
-    step: "02",
-    title: "设计提炼",
-    text: "把意象转成可执行的造型关键词、功能机会点、结构关系和 CMF 方向。",
+    title: "重排",
+    text: "把每个项目统一成背景、机会点、过程、模型、渲染和总结，减少散图堆叠。",
   },
   {
-    step: "03",
-    title: "草图推导",
-    text: "展示形体比例、交互路径、拆件关系和细节节点，让过程能被面试官追问。",
+    title: "包装",
+    text: "用清爽白底、卡片、圆角和生活方式图片，建立更像互联网大厂作品集的阅读体验。",
   },
   {
-    step: "04",
-    title: "建模验证",
-    text: "用 Rhino、KeyShot 和必要的爆炸图说明建模能力、零件逻辑和材质控制。",
-  },
-  {
-    step: "05",
-    title: "场景渲染",
-    text: "用产品环境图、使用图和细节图证明方案可以被理解、被使用、被展示。",
-  },
-  {
-    step: "06",
-    title: "项目总结",
-    text: "最后收束为设计价值、能力证明和后续可优化方向，避免项目只停留在好看。",
+    title: "投递",
+    text: "网站负责快速浏览，后续 PDF 和 PPT 复用同一套项目顺序、文字和图片比例。",
   },
 ];
 
-const walltimeDeepDive = [
-  ["项目背景", "桌面时间管理产品常常偏工具化，用户会抗拒高频提醒。壁时把提醒转成柔和陪伴。"],
-  ["产品语义", "玉璧环形对应东方时间秩序，中心屏幕承载节气、时间和轻提醒信息。"],
-  ["CMF 方向", "黑金漆面、金属边界、透光屏幕和深色底座共同建立高级器物感。"],
-  ["交互策略", "信息分层为时间、节气、提醒、陪伴四层，控制亮度和节奏，减少桌面打扰。"],
+const gallery = [
+  ["/assets/game-console-front.jpg", "游戏手柄正面渲染", "数码产品建模"],
+  ["/assets/earbuds-open.jpg", "无线耳机开盖图", "消费电子 CMF"],
+  ["/assets/game-console-back.jpg", "游戏手柄背面结构", "按键与握持比例"],
+  ["/assets/walltime-process.jpg", "壁时过程图", "毕业设计叙事"],
+  ["/assets/project-boards/packaging-board-clean.jpg", "包装视觉系统", "排版与色彩"],
+  ["/assets/project-boards/chair-board.jpg", "人体工学座椅", "人机尺寸"],
 ];
 
-const visualWorks = [
-  {
-    src: "/assets/project-boards/visual-board.jpg",
-    title: "CMF 与版式精选",
-    meta: "色彩材质工艺 / 海报 / 品牌延展",
-  },
-  {
-    src: "/assets/project-boards/chair-board.jpg",
-    title: "人体工学座椅",
-    meta: "人机尺寸 / 使用姿态 / 结构表达",
-  },
-  {
-    src: "/assets/walltime-process.jpg",
-    title: "壁时过程页",
-    meta: "过程叙事 / 结构草图 / 展板组织",
-  },
-  {
-    src: "/assets/project-boards/pill-board.jpg",
-    title: "磁吸药盒",
-    meta: "产品改良 / 使用场景 / CMF",
-  },
+const skills = [
+  [Ruler, "产品定义", "用户场景、竞品拆解、机会点提炼、产品结构逻辑。"],
+  [Blocks, "三维建模", "Rhino 硬表面建模、组件关系、曲面控制和产品比例。"],
+  [Camera, "渲染表达", "KeyShot 材质、灯光、场景图、细节图和展示板。"],
+  [Palette, "CMF/包装", "色彩材质工艺、包装系统、品牌视觉和版式整理。"],
 ];
 
-const responsivePreviews = [
-  {
-    icon: Smartphone,
-    title: "手机浏览",
-    src: "/assets/responsive/mobile-home.jpg",
-    text: "首屏、项目卡和联系区改为单列阅读，按钮全宽排列，长标题在小屏上保持可读。",
-  },
-  {
-    icon: Tablet,
-    title: "平板浏览",
-    src: "/assets/responsive/tablet-work.jpg",
-    text: "项目墙和作品过程区使用两列节奏，适合横竖屏平板展示作品图和项目叙事。",
-  },
-  {
-    icon: Monitor,
-    title: "电脑浏览",
-    src: "/assets/responsive/desktop-case.jpg",
-    text: "桌面端保留大标题、大图和分栏案例结构，强化 Apple 产品页式的沉浸阅读。",
-  },
-];
-
-const capabilities = [
-  {
-    icon: Ruler,
-    title: "工业产品设计",
-    text: "产品定义、形态推导、人机尺寸、结构逻辑与作品集展板表达。",
-  },
-  {
-    icon: Box,
-    title: "三维建模",
-    text: "Rhino 硬表面建模、组件拆解、比例控制、细节推敲与爆炸图表达。",
-  },
-  {
-    icon: Sparkles,
-    title: "产品可视化",
-    text: "KeyShot 渲染、CMF 表达、场景搭建、灯光布置与产品叙事。",
-  },
-  {
-    icon: PenTool,
-    title: "品牌与包装",
-    text: "包装层级、品牌延展、视觉系统、产品海报与汇报版式规范。",
-  },
-];
-
-const contactItems = [
-  {
-    icon: Phone,
-    label: "电话",
-    value: contact.phone,
-    href: `tel:${contact.phone}`,
-  },
-  {
-    icon: Mail,
-    label: "邮箱",
-    value: contact.email,
-    href: `mailto:${contact.email}`,
-  },
-];
-
-function useSmoothScrollReveal() {
+function useSmoothScroll() {
   useEffect(() => {
+    if (typeof window === "undefined" || !window.requestAnimationFrame) return undefined;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return undefined;
+
     const lenis = new Lenis({
-      duration: 1.12,
+      duration: 1,
       smoothWheel: true,
-      lerp: 0.08,
+      lerp: 0.09,
     });
 
     let rafId = 0;
     const raf = (time) => {
       lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
+      rafId = window.requestAnimationFrame(raf);
     };
-    rafId = requestAnimationFrame(raf);
 
-    const animations = gsap.utils.toArray(".reveal").map((element) =>
-      gsap.fromTo(
-        element,
-        { autoAlpha: 0, y: 44 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: element,
-            start: "top 86%",
-          },
-        },
-      ),
-    );
-
+    rafId = window.requestAnimationFrame(raf);
     return () => {
-      cancelAnimationFrame(rafId);
-      animations.forEach((animation) => {
-        animation.scrollTrigger?.kill();
-        animation.kill();
-      });
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      window.cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);
 }
 
 export default function PortfolioPage() {
-  const [introVisible, setIntroVisible] = useState(true);
-  const { scrollYProgress } = useScroll();
-  const heroShift = useTransform(scrollYProgress, [0, 0.28], [0, -110]);
-  const heroFade = useTransform(scrollYProgress, [0, 0.22], [1, 0.25]);
-
-  useSmoothScrollReveal();
+  const [showIntro, setShowIntro] = useState(true);
+  useSmoothScroll();
 
   useEffect(() => {
-    const timer = setTimeout(() => setIntroVisible(false), 2600);
-    return () => clearTimeout(timer);
+    const timer = window.setTimeout(() => setShowIntro(false), 1900);
+    return () => window.clearTimeout(timer);
   }, []);
 
   return (
-    <main id="top" className="min-h-screen overflow-hidden bg-carbon text-paper">
-      {introVisible ? <OpeningAnimation /> : null}
+    <main id="top" className="site-shell">
+      {showIntro ? <OpeningAnimation /> : null}
 
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-carbon/74 px-4 py-3 backdrop-blur-xl md:px-10">
-        <div className="mx-auto flex max-w-[1480px] items-center justify-between gap-4">
-          <a className="grid h-11 w-11 place-items-center border border-white/15 text-xs font-semibold" href="#top" aria-label="曹佳航作品集首页">
-            曹
-          </a>
-          <nav className="hidden justify-center gap-4 text-sm text-paper/70 sm:flex md:gap-7" aria-label="主导航">
-            {nav.map((item) => (
-              <a className="transition hover:text-copper" key={item.href} href={item.href}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <a className="button ghost hidden sm:inline-flex" href="#contact">
-            联系我
-            <ArrowUpRight size={16} />
-          </a>
-        </div>
+      <header className="site-header">
+        <a className="brand-mark" href="#top" aria-label="返回首页">
+          曹
+        </a>
+        <nav aria-label="主导航">
+          {nav.map((item) => (
+            <a key={item.href} href={item.href}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+        <a className="header-contact" href="#contact">
+          联系
+          <ArrowUpRight size={15} />
+        </a>
       </header>
 
-      <section className="hero-grid relative grid min-h-screen items-center gap-12 overflow-hidden px-5 pb-28 pt-32 md:px-14 lg:grid-cols-[0.86fr_1.14fr]">
-        <motion.div className="relative z-10 max-w-[760px]" style={{ y: heroShift, opacity: heroFade }}>
-          <motion.p className="eyebrow" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            Eastern Future Product Design
+      <section className="hero-section" aria-labelledby="hero-title">
+        <div className="hero-copy">
+          <motion.p className="section-kicker" initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }}>
+            Product Design Portfolio
           </motion.p>
           <motion.h1
-            className="display-title"
-            initial={{ opacity: 0, y: 28 }}
+            id="hero-title"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.08 }}
+            transition={{ delay: 0.08 }}
           >
-            东方未来感产品设计作品集
+            曹佳航的清爽型产品设计作品集
           </motion.h1>
           <motion.p
-            className="mt-8 max-w-[620px] text-[clamp(1.02rem,1.55vw,1.35rem)] leading-relaxed text-paper/70"
+            className="hero-lead"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.16 }}
+            transition={{ delay: 0.16 }}
           >
-            面向工业产品设计岗位，把壁时、产品建模、CMF、包装和用户研究重新包装成“创意来源 - 设计提炼 - 建模渲染 - 场景展示”的求职叙事。
+            整体改成互联网大厂和小红书式清爽作品集：白底、卡片、清晰信息层级、生活方式感和适合投递的中文项目叙事。
           </motion.p>
           <motion.div
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap"
-            initial={{ opacity: 0, y: 24 }}
+            className="hero-actions"
+            initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.24 }}
+            transition={{ delay: 0.24 }}
           >
-            <a className="button primary" href="#catalog">
-              查看目录
-              <MoveRight size={18} />
+            <a className="primary-action" href="#work">
+              看精选作品
+              <ArrowUpRight size={17} />
             </a>
-            <a className="button ghost" href="#walltime">
-              重点项目：壁时
+            <a className="secondary-action" href="#gallery">
+              看图片排版
             </a>
           </motion.div>
-          <motion.div
-            className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4"
-            initial={{ opacity: 0, y: 26 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.32 }}
-          >
-            {heroStats.map(([value, label]) => (
-              <div className="stat-tile" key={label}>
-                <strong>{value}</strong>
-                <span>{label}</span>
+        </div>
+
+        <motion.div
+          className="hero-board"
+          initial={{ opacity: 0, y: 28, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ delay: 0.2, duration: 0.72 }}
+        >
+          <div className="hero-board-main">
+            <img src="/assets/game-console-wide.jpg" alt="游戏手柄产品渲染" />
+            <span>精选建模项目</span>
+          </div>
+          <div className="note-stack" aria-label="作品集优化方向">
+            {["白底卡片", "图片统一比例", "中文项目叙事"].map((item) => (
+              <div key={item}>
+                <CheckCircle2 size={16} />
+                {item}
               </div>
             ))}
-          </motion.div>
+          </div>
         </motion.div>
 
-        <div className="hero-product-stage relative min-h-[470px] overflow-hidden lg:min-h-[680px]">
-          <HeroCanvas />
-          <div className="hero-product-copy">
-            <span>WallTime</span>
-            <strong>AI 桌面摆件 · 3D 互动展示</strong>
-          </div>
-          <div className="hero-orbit one" />
-          <div className="hero-orbit two" />
-        </div>
-      </section>
-
-      <section id="catalog" className="section-wrap catalog-section" aria-labelledby="catalog-title">
-        <SectionTitle
-          id="catalog-title"
-          kicker="作品目录"
-          title="像产品发布会一样，让每个项目先被快速理解。"
-          text="参考作品集的目录逻辑，但不照搬内容：先建立清晰项目入口，再把每个项目拆成创意来源、设计提炼、过程和最终展示。"
-        />
-        <div className="catalog-grid">
-          {projects.map((project) => (
-            <a className="catalog-card reveal" href={`#${project.id}`} key={project.id}>
-              <span>{project.no}</span>
-              <h3>{project.title}</h3>
-              <p>{project.subtitle}</p>
-              <em>{project.category}</em>
-            </a>
+        <div className="stats-row">
+          {stats.map(([value, label]) => (
+            <div key={label}>
+              <strong>{value}</strong>
+              <span>{label}</span>
+            </div>
           ))}
         </div>
       </section>
 
       <section id="work" className="section-wrap" aria-labelledby="work-title">
-        <SectionTitle
+        <SectionHeading
+          kicker="Selected Works"
+          title="6 个主项目按求职逻辑重排，入口更清楚。"
+          text="每个卡片都统一图片比例、项目标签、能力点和下一步可补强内容，让作品看起来像完整 case study，而不是课程截图集合。"
           id="work-title"
-          kicker="Selected Projects"
-          title="保留 6 个能证明能力的项目，而不是把所有作业堆上去。"
-          text="项目卡统一比例、统一信息层级，先让招聘方看到你会做产品定义、建模渲染、CMF、包装和过程表达。"
         />
         <div className="project-grid">
           {projects.map((project, index) => (
-            <article className={`project-card reveal ${index === 0 ? "featured" : ""}`} id={project.id} key={project.id}>
-              <a href="#project-focus" aria-label={`查看${project.title}项目详情`}>
-                <div className="project-media overflow-hidden bg-graphite">
-                  <img src={project.image} alt={`${project.title}项目展示板`} loading={index === 0 ? "eager" : "lazy"} />
-                </div>
-                <div className="p-5 md:p-6">
-                  <div className="mb-5 flex items-start justify-between gap-4">
-                    <div>
-                      <p className="text-xs text-copper">{project.no} / {project.year}</p>
-                      <h3 className="mt-2 text-[clamp(1.5rem,2.6vw,2.6rem)] font-medium leading-none">{project.title}</h3>
-                      <p className="mt-2 text-sm text-paper/50">{project.subtitle}</p>
-                    </div>
-                    <ArrowUpRight className="mt-1 shrink-0 text-copper" size={20} />
-                  </div>
-                  <p className="project-summary text-sm leading-relaxed text-paper/64">{project.summary}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span className="rounded-full border border-white/10 px-3 py-1 text-xs text-paper/62" key={tag}>
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </a>
-            </article>
+            <ProjectCard key={project.id} project={project} featured={index === 0} />
           ))}
+        </div>
+      </section>
+
+      <section className="feature-strip" aria-label="作品集视觉方向">
+        <div>
+          <Sparkles size={22} />
+          <strong>视觉方向</strong>
+          <span>小红书式清爽卡片 + 大厂作品集信息层级</span>
+        </div>
+        <div>
+          <LayoutGrid size={22} />
+          <strong>图片策略</strong>
+          <span>统一 4:3、3:2、16:9 画幅，避免大图乱裁和展板拥挤</span>
         </div>
       </section>
 
       <section id="process" className="section-wrap process-section" aria-labelledby="process-title">
-        <SectionTitle
+        <SectionHeading
+          kicker="Design Method"
+          title="不是多放作品，而是把作品讲明白。"
+          text="投递时最重要的是让面试官快速看懂你的能力：会筛选、会归纳、会建模、会渲染，也会把课程作品包装成完整项目。"
           id="process-title"
-          kicker="Design Process"
-          title="每个项目都按作品集逻辑补齐过程，不只放一张效果图。"
-          text="这套结构直接服务求职面试：面试官能看到你怎么发现问题、怎么提炼设计、怎么建模验证、怎么输出最终方案。"
         />
-        <div className="process-timeline">
-          {processSteps.map((item) => (
-            <article className="process-card reveal" key={item.step}>
-              <span>{item.step}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+        <div className="process-grid">
+          {processSteps.map((step, index) => (
+            <article className="process-card" key={step.title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="walltime" className="section-wrap walltime-section" aria-labelledby="walltime-title">
-        <div className="case-layout">
-          <div className="case-copy reveal">
-            <p className="eyebrow">Hero Case / 壁时</p>
-            <h2 id="walltime-title" className="section-title">
-              东方情绪疗愈桌面伴侣，把时间管理做成可以被感知的器物。
-            </h2>
-            <p className="mt-6 text-base leading-8 text-paper/68">
-              这是网站的核心项目。它需要承担你的毕业设计、智能产品定义、东方文化转译、CMF 和交互叙事能力，因此页面用更长的滚动节奏呈现。
-            </p>
-            <div className="mt-8 grid gap-3">
-              {walltimeDeepDive.map(([title, text]) => (
-                <div className="case-note" key={title}>
-                  <strong>{title}</strong>
-                  <span>{text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className="case-visual reveal">
-            <img src="/assets/walltime-detail.png" alt="壁时产品细节展示" />
-          </div>
-        </div>
-      </section>
-
-      <section id="project-focus" className="section-wrap" aria-labelledby="focus-title">
-        <SectionTitle
-          id="focus-title"
-          kicker="Project Story"
-          title="六个项目都补上能被面试官追问的设计逻辑。"
-          text="每个项目从创意来源、设计提炼、过程验证到最终呈现统一叙事，后续做 PDF 和 PPT 时可以直接复用。"
+      <section className="section-wrap story-section" aria-labelledby="story-title">
+        <SectionHeading
+          kicker="Project Detail"
+          title="每个项目补齐“为什么做、怎么做、还能怎么优化”。"
+          text="这些文字后续可以直接迁移到 PDF 作品集和答辩 PPT，保证网站、PPT、简历里的项目表达一致。"
+          id="story-title"
         />
-        <div className="story-grid">
+        <div className="story-list">
           {projects.map((project) => (
-            <article className="story-card reveal" key={project.id}>
-              <div className="story-card-head">
-                <span>{project.no}</span>
-                <div>
-                  <h3>{project.title}</h3>
-                  <p>{project.category}</p>
-                </div>
+            <article className="story-card" key={project.id}>
+              <div className="story-image">
+                <img src={project.detailImage} alt={`${project.title}详情图`} loading="lazy" />
               </div>
-              <div className="story-lines">
-                {Object.entries(project.story).map(([key, value]) => (
-                  <div key={key}>
-                    <strong>{storyLabels[key]}</strong>
-                    <p>{value}</p>
-                  </div>
-                ))}
+              <div className="story-content">
+                <p className="project-number">{project.number}</p>
+                <h3>{project.title}</h3>
+                <p className="story-summary">{project.summary}</p>
+                <div className="story-points">
+                  {project.story.map(([label, text]) => (
+                    <div key={label}>
+                      <strong>{label}</strong>
+                      <span>{text}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="three" className="section-wrap three-section" aria-labelledby="three-title">
-        <div className="three-copy reveal">
-          <p className="eyebrow">3D Interactive Display</p>
-          <h2 id="three-title" className="section-title">
-            3D互动展示不是装饰，而是证明产品设计能进入网页体验。
-          </h2>
-          <p>
-            当前用 React Three Fiber / Drei 做壁时的抽象产品旋转展示。后续 Rhino、KeyShot 或 Blender 模型导出 `.glb` 后，可以替换为真实模型，加入材质切换、爆炸图和结构标注。
-          </p>
-        </div>
-        <div className="three-stage reveal">
-          <HeroCanvas />
-          <div className="three-feature-list">
-            {["360° 产品旋转", "CMF 材质切换", "爆炸图滚动动画"].map((item) => (
-              <span key={item}>{item}</span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="responsive" className="section-wrap responsive-section" aria-labelledby="responsive-title">
-        <SectionTitle
-          id="responsive-title"
-          kicker="多设备适配"
-          title="手机、平板、电脑打开都保持产品官网级阅读节奏。"
-          text="页面按不同屏幕控制标题尺寸、项目网格、按钮宽度和图片比例，让作品集在投递链接、面试投屏和手机转发时都能稳定展示。"
+      <section id="gallery" className="section-wrap gallery-section" aria-labelledby="gallery-title">
+        <SectionHeading
+          kicker="Gallery"
+          title="把图片整理成有节奏的视觉墙，而不是随机铺图。"
+          text="主视觉用大图，辅助内容用卡片式小图，适合手机滑动浏览，也适合面试时快速投屏。"
+          id="gallery-title"
         />
-        <div className="device-grid">
-          {responsivePreviews.map(({ icon: Icon, title, src, text }) => (
-            <article className="device-card reveal" key={title}>
-              <div className="device-card-head">
-                <div className="device-icon">
-                  <Icon size={19} />
-                </div>
-                <div>
-                  <h3>{title}</h3>
-                  <p>{text}</p>
-                </div>
-              </div>
-              <div className="device-frame">
-                <img src={src} alt={`${title}效果预览`} loading="lazy" />
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-wrap" aria-labelledby="visual-title">
-        <SectionTitle
-          id="visual-title"
-          kicker="Visual Evidence"
-          title="用精选视觉图证明建模、渲染、CMF 和版式能力。"
-          text="这一组保留为网站视觉墙，后续 PDF/PPT 可继续筛选成 6-10 张强图。"
-        />
-        <div className="visual-grid">
-          {visualWorks.map((work) => (
-            <article className="visual-card reveal" key={work.title}>
-              <img src={work.src} alt={work.title} loading="lazy" />
+        <div className="gallery-grid">
+          {gallery.map(([src, title, meta], index) => (
+            <article className={index === 0 || index === 1 ? "gallery-card wide" : "gallery-card"} key={title}>
+              <img src={src} alt={title} loading="lazy" />
               <div>
-                <h3>{work.title}</h3>
-                <p>{work.meta}</p>
+                <h3>{title}</h3>
+                <p>{meta}</p>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="capability" className="section-wrap" aria-labelledby="capability-title">
-        <SectionTitle
-          id="capability-title"
+      <section id="skills" className="section-wrap" aria-labelledby="skills-title">
+        <SectionHeading
           kicker="Skills"
-          title="能力表达围绕产品设计岗位，而不是软件清单。"
-          text="软件只是工具，网站重点展示你如何完成产品定义、建模验证、材质表达和作品集叙事。"
+          title="能力表达围绕产品设计岗位，不写成普通软件清单。"
+          text="招聘方更关心你能不能把问题、形体、结构、材质和展示表达串起来。"
+          id="skills-title"
         />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {capabilities.map(({ icon: Icon, title, text }) => (
-            <article className="reveal border border-white/10 bg-white/[0.035] p-6" key={title}>
-              <Icon className="text-copper" size={26} />
-              <h3 className="mt-7 text-xl font-medium">{title}</h3>
-              <p className="mt-4 text-sm leading-7 text-paper/62">{text}</p>
+        <div className="skills-grid">
+          {skills.map(([Icon, title, text]) => (
+            <article className="skill-card" key={title}>
+              <Icon size={24} />
+              <h3>{title}</h3>
+              <p>{text}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="about" className="section-wrap grid gap-10 border-t border-white/15 lg:grid-cols-[0.9fr_0.78fr]" aria-labelledby="about-title">
-        <div className="reveal">
-          <p className="eyebrow">About Me</p>
-          <h2 id="about-title" className="section-title">
-            曹佳航，产品设计专业学生，正在把课程作业升级成求职级作品集。
-          </h2>
-        </div>
-        <div className="reveal text-base leading-8 text-paper/68">
+      <section id="contact" className="contact-section" aria-labelledby="contact-title">
+        <div>
+          <p className="section-kicker">Contact</p>
+          <h2 id="contact-title">用于投递的线上作品集已经换成清爽版。</h2>
           <p>
-            目前作品方向集中在工业产品设计、智能产品、Rhino 建模、KeyShot 渲染、CMF、包装和 AI 辅助设计。网站先完成线上展示，后续可以继续导出求职 PDF 和可编辑 PPT。
+            后续可以继续把这套顺序同步到 PDF 和 PPT：壁时作为重点项目，游戏手柄、耳机、散热风扇作为建模渲染支撑，果汁机补研究，包装项目补视觉系统。
           </p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {["Rhino", "KeyShot", "CMF", "产品建模", "包装设计", "AI辅助设计"].map((item) => (
-              <span className="border border-white/10 px-4 py-3 text-sm text-paper/70" key={item}>
-                {item}
-              </span>
-            ))}
-          </div>
         </div>
-      </section>
-
-      <section id="contact" className="contact-section min-h-[62vh] px-5 py-24 md:px-14 md:py-36" aria-labelledby="contact-title">
-        <div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.9fr_0.7fr]">
-          <div className="reveal">
-            <p className="eyebrow">Contact</p>
-            <h2 id="contact-title" className="section-title">
-              作品集已整理为可投递网页，下一步可以继续做 PDF 和答辩 PPT。
-            </h2>
-            <p className="mt-6 max-w-[720px] text-base leading-8 text-paper/68">
-              如果用于投递小米、华为、联想、比亚迪、理想、大疆、海尔、美的等产品设计岗位，建议继续补壁时实物视频、爆炸图、App 联动和包装开箱页。
-            </p>
-          </div>
-          <div className="grid gap-4">
-            {contactItems.map(({ icon: Icon, label, value, href }) => (
-              <a className="contact-card reveal" href={href} key={label}>
-                <Icon size={22} />
-                <span>{label}</span>
-                <strong>{value}</strong>
-              </a>
-            ))}
-          </div>
+        <div className="contact-cards">
+          <a href={`tel:${contact.phone}`}>
+            <Phone size={22} />
+            <span>电话</span>
+            <strong>{contact.phone}</strong>
+          </a>
+          <a href={`mailto:${contact.email}`}>
+            <Mail size={22} />
+            <span>邮箱</span>
+            <strong>{contact.email}</strong>
+          </a>
         </div>
       </section>
     </main>
   );
 }
 
-const storyLabels = {
-  source: "创意来源",
-  refine: "设计提炼",
-  process: "过程验证",
-  render: "最终呈现",
-};
+function ProjectCard({ project, featured }) {
+  return (
+    <article className={featured ? "project-card featured" : "project-card"} id={project.id}>
+      <a href="#story-title">
+        <div className="project-image">
+          <img src={project.image} alt={`${project.title}展示图`} loading={featured ? "eager" : "lazy"} />
+          <span>{project.tone}</span>
+        </div>
+        <div className="project-body">
+          <p className="project-number">{project.number} / {project.year}</p>
+          <h3>{project.title}</h3>
+          <p className="project-subtitle">{project.subtitle}</p>
+          <p className="project-summary">{project.summary}</p>
+          <div className="project-tags">
+            {project.points.map((point) => (
+              <span key={point}>{point}</span>
+            ))}
+          </div>
+        </div>
+      </a>
+    </article>
+  );
+}
 
 function OpeningAnimation() {
   return (
     <motion.div className="intro-overlay" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-      <motion.div className="intro-product" initial={{ scale: 0.94, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1.1 }}>
-        <img src="/assets/walltime-front.png" alt="壁时产品开场展示" />
+      <motion.div
+        className="intro-card"
+        initial={{ y: 24, opacity: 0, scale: 0.98 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        transition={{ duration: 0.72 }}
+      >
+        <span>曹佳航作品集</span>
+        <strong>清爽版正在打开</strong>
+        <p>白底卡片 / 产品叙事 / 图片重排</p>
       </motion.div>
-      <motion.div className="intro-copy" initial={{ y: 22, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ delay: 0.25, duration: 0.85 }}>
-        <span>曹佳航 · Product Design Portfolio</span>
-        <strong>东方未来感</strong>
-        <p>产品过程 / CMF / 3D 互动展示</p>
-      </motion.div>
-      <motion.div className="intro-progress" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 2.35, ease: "easeInOut" }} />
+      <motion.div className="intro-line" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.5 }} />
     </motion.div>
   );
 }
 
-function SectionTitle({ id, kicker, title, text }) {
+function SectionHeading({ kicker, title, text, id }) {
   return (
-    <div className="reveal mb-12 max-w-[920px]">
-      <p className="eyebrow">{kicker}</p>
-      <h2 id={id} className="section-title">
-        {title}
-      </h2>
-      {text ? <p className="mt-5 max-w-[760px] text-base leading-8 text-paper/64">{text}</p> : null}
+    <div className="section-heading">
+      <p className="section-kicker">{kicker}</p>
+      <h2 id={id}>{title}</h2>
+      <p>{text}</p>
     </div>
   );
 }
