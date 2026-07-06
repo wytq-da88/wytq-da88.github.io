@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "lenis";
 import {
   ArrowUpRight,
@@ -235,10 +235,18 @@ function useSmoothScroll() {
 }
 
 export default function PortfolioPage() {
+  const [introVisible, setIntroVisible] = useState(true);
   useSmoothScroll();
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIntroVisible(false), 2600);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <main id="top" className="site-shell">
+      <AnimatePresence>{introVisible ? <OpeningAnimation /> : null}</AnimatePresence>
+
       <header className="site-header">
         <a className="brand-mark" href="#top" aria-label="返回首页">
           曹
@@ -459,6 +467,55 @@ export default function PortfolioPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function OpeningAnimation() {
+  return (
+    <motion.div
+      className="intro-overlay"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.62, ease: [0.22, 1, 0.36, 1] }}
+      aria-hidden="true"
+    >
+      <div className="intro-stage">
+        <motion.div
+          className="intro-orbit"
+          initial={{ opacity: 0, rotateX: 8, rotateY: -68, scale: 0.74 }}
+          animate={{
+            opacity: 1,
+            rotateX: [8, -3, 0],
+            rotateY: [-68, 18, 0],
+            scale: [0.74, 1.05, 1],
+          }}
+          transition={{ duration: 1.55, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <span className="intro-halo" />
+          <img
+            src="/assets/optimized/walltime-front-web.jpg"
+            alt=""
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            width="1200"
+            height="1200"
+          />
+        </motion.div>
+
+        <motion.div
+          className="intro-copy"
+          initial={{ opacity: 0, y: 22 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.84, duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <span>壁时</span>
+          <strong>AI 桌面情绪陪伴产品</strong>
+          <i />
+        </motion.div>
+      </div>
+    </motion.div>
   );
 }
 

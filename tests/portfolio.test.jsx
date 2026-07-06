@@ -26,7 +26,8 @@ test("renders a polished public-facing product design portfolio", () => {
   expect(container.querySelector(".hero-board-main img")).toHaveAttribute("fetchpriority", "high");
   expect(screen.getByRole("navigation", { name: "精选项目快速导航" })).toBeInTheDocument();
   expect(container.querySelectorAll("article").length).toBeGreaterThanOrEqual(18);
-  expect(container.querySelector(".intro-overlay")).toBeNull();
+  expect(container.querySelector(".intro-overlay")).not.toBeNull();
+  expect(container.querySelector(".intro-orbit img")).toHaveAttribute("src", "/assets/optimized/walltime-front-web.jpg");
   expect(container.querySelector(".scroll-progress")).toBeNull();
   expect(pageText).not.toMatch(
     /黑金|东方未来感|药盒|磁吸|小车|小红书|清爽版|清爽型|改成|这版|旧版|正在打开|已经换成|后续|下一步|PPT|PDF|帮|建议|应该|怎么做|投递|面试官|求职|课程截图|删掉|不适合|Codex|Claude|ChatGPT|网站负责/
