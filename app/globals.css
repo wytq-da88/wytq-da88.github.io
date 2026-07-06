@@ -24,6 +24,7 @@
 html {
   background: var(--page);
   scroll-behavior: auto;
+  scroll-padding-top: 110px;
 }
 
 body {
@@ -52,9 +53,15 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible {
+  outline: 3px solid rgba(255, 107, 87, 0.36);
+  outline-offset: 4px;
+}
+
 img {
   display: block;
   max-width: 100%;
+  backface-visibility: hidden;
 }
 
 .site-shell {
@@ -162,15 +169,19 @@ img {
 
 .hero-section h1 {
   max-width: 820px;
-  font-size: clamp(3.2rem, 7.6vw, 7rem);
+  font-size: 6.4rem;
   line-height: 0.94;
+}
+
+.hero-section h1 span {
+  display: block;
 }
 
 .hero-lead {
   max-width: 720px;
   margin: 24px 0 0;
   color: var(--muted);
-  font-size: clamp(1rem, 1.5vw, 1.22rem);
+  font-size: 1.15rem;
   line-height: 1.9;
 }
 
@@ -193,8 +204,9 @@ img {
   font-weight: 680;
   transition:
     box-shadow 180ms ease,
-    transform 180ms ease,
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
     background 180ms ease;
+  will-change: transform;
 }
 
 .primary-action {
@@ -212,6 +224,8 @@ img {
 .primary-action:hover,
 .secondary-action:hover,
 .project-card:hover,
+.process-card:hover,
+.story-card:hover,
 .gallery-card:hover,
 .skill-card:hover,
 .contact-cards a:hover {
@@ -299,7 +313,7 @@ img {
 
 .stats-row strong {
   display: block;
-  font-size: clamp(1.5rem, 3vw, 2.35rem);
+  font-size: 2.15rem;
   line-height: 1;
 }
 
@@ -327,7 +341,7 @@ img {
 
 .section-heading h2,
 .contact-section h2 {
-  font-size: clamp(2rem, 4.6vw, 4.8rem);
+  font-size: 4.2rem;
   line-height: 1.03;
 }
 
@@ -336,6 +350,69 @@ img {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.82;
+}
+
+.project-quick-nav {
+  position: sticky;
+  top: 86px;
+  z-index: 40;
+  display: flex;
+  width: min(1180px, calc(100% - 32px));
+  margin: -22px auto 26px;
+  gap: 10px;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.88);
+  padding: 10px;
+  box-shadow: 0 14px 38px rgba(17, 17, 17, 0.07);
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  backdrop-filter: blur(18px);
+}
+
+.project-quick-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.project-quick-nav a {
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-height: 40px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  background: var(--page);
+  padding: 0 14px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 680;
+  scroll-snap-align: start;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-quick-nav a:hover {
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.project-quick-nav span {
+  color: var(--accent);
+  font-size: 0.78rem;
+}
+
+#work,
+#process,
+#gallery,
+#skills,
+#contact,
+.project-card,
+.story-card {
+  scroll-margin-top: 124px;
 }
 
 .project-grid {
@@ -352,9 +429,10 @@ img {
   background: #ffffff;
   box-shadow: var(--shadow-soft);
   transition:
-    box-shadow 180ms ease,
-    transform 180ms ease,
+    box-shadow 220ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 180ms ease;
+  will-change: transform;
 }
 
 .project-card:hover {
@@ -389,7 +467,8 @@ img {
   height: 100%;
   width: 100%;
   object-fit: cover;
-  transition: transform 260ms ease;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .project-card:hover .project-image img,
@@ -433,7 +512,7 @@ img {
 }
 
 .project-card h3 {
-  font-size: clamp(1.4rem, 2.2vw, 2.5rem);
+  font-size: 2rem;
 }
 
 .project-subtitle,
@@ -534,6 +613,21 @@ img {
   box-shadow: var(--shadow-soft);
 }
 
+.process-card,
+.story-card {
+  transition:
+    box-shadow 220ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 180ms ease;
+  will-change: transform;
+}
+
+.process-card:hover,
+.story-card:hover {
+  border-color: rgba(255, 107, 87, 0.22);
+  box-shadow: var(--shadow);
+}
+
 .process-card span {
   display: inline-grid;
   height: 38px;
@@ -593,7 +687,7 @@ img {
 }
 
 .story-card h3 {
-  font-size: clamp(1.7rem, 3vw, 3.4rem);
+  font-size: 3rem;
 }
 
 .story-summary {
@@ -641,8 +735,9 @@ img {
   background: #ffffff;
   box-shadow: var(--shadow-soft);
   transition:
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    box-shadow 220ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .gallery-card.wide {
@@ -669,8 +764,9 @@ img {
 
 .skill-card {
   transition:
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    box-shadow 220ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
 .skill-card svg {
@@ -717,8 +813,20 @@ img {
   padding: 18px;
   box-shadow: var(--shadow-soft);
   transition:
-    box-shadow 180ms ease,
-    transform 180ms ease;
+    box-shadow 220ms ease,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
 }
 
 .contact-cards svg {
@@ -734,57 +842,7 @@ img {
 .contact-cards strong {
   min-width: 0;
   overflow-wrap: anywhere;
-  font-size: clamp(1rem, 2vw, 1.35rem);
-}
-
-.intro-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: grid;
-  min-height: 100vh;
-  place-items: center;
-  background: #ffffff;
-  pointer-events: none;
-}
-
-.intro-card {
-  display: grid;
-  justify-items: center;
-  gap: 10px;
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  background: #ffffff;
-  padding: 30px 34px;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-
-.intro-card span {
-  color: var(--accent);
-  font-size: 0.86rem;
-  font-weight: 760;
-}
-
-.intro-card strong {
-  font-size: clamp(2rem, 5vw, 4.8rem);
-  line-height: 1;
-}
-
-.intro-card p {
-  margin: 0;
-  color: var(--muted);
-}
-
-.intro-line {
-  position: fixed;
-  left: 12vw;
-  right: 12vw;
-  bottom: 12vh;
-  height: 3px;
-  transform-origin: left;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--accent), var(--orange));
+  font-size: 1.28rem;
 }
 
 @media (min-width: 1021px) {
@@ -800,6 +858,23 @@ img {
 }
 
 @media (max-width: 1020px) {
+  .hero-section h1 {
+    font-size: 4.8rem;
+  }
+
+  .section-heading h2,
+  .contact-section h2 {
+    font-size: 3.25rem;
+  }
+
+  .project-card h3 {
+    font-size: 1.75rem;
+  }
+
+  .story-card h3 {
+    font-size: 2.55rem;
+  }
+
   .hero-section,
   .section-heading,
   .contact-section {
@@ -828,6 +903,10 @@ img {
 
   .hero-board {
     max-width: 620px;
+  }
+
+  .project-quick-nav {
+    top: 84px;
   }
 
   .note-stack {
@@ -859,7 +938,8 @@ img {
   }
 
   .hero-section h1 {
-    font-size: clamp(2.7rem, 12vw, 4.6rem);
+    font-size: 3.1rem;
+    line-height: 1.02;
   }
 
   .hero-actions a {
@@ -895,7 +975,22 @@ img {
 
   .section-heading h2,
   .contact-section h2 {
-    font-size: clamp(2rem, 9.2vw, 3.2rem);
+    font-size: 2.28rem;
+    line-height: 1.08;
+  }
+
+  .project-card h3 {
+    font-size: 1.55rem;
+  }
+
+  .story-card h3 {
+    font-size: 2rem;
+  }
+
+  .project-quick-nav {
+    top: 128px;
+    margin-top: -12px;
+    margin-bottom: 10px;
   }
 
   .story-image {
