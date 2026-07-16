@@ -1,9 +1,9 @@
-import "./globals.css";
+import "./studio.css";
 
 export const metadata = {
-  title: "曹佳航｜产品设计作品集",
+  title: "曹佳航｜产品设计师作品集",
   description:
-    "面向产品设计岗位的个人作品集，展示壁时、数码产品建模、CMF、包装视觉、产品过程与生活方式场景表达。",
+    "曹佳航个人产品设计作品集，展示涪陵榨菜包装、壁时、消费电子建模、CMF 与用户场景研究。",
 };
 
 export default function RootLayout({ children }) {
