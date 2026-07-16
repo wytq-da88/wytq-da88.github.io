@@ -40,19 +40,27 @@ test("renders Walltime before the designer profile and other projects", () => {
   const walltimeIndex = pageText.indexOf("壁时");
   const finalShowcaseIndex = pageText.indexOf("最终效果展示");
   const designerIndex = pageText.indexOf("曹佳航");
+  const coolingIndex = pageText.indexOf("手机散热风扇");
+  const mouseIndex = pageText.indexOf("鼠标产品渲染");
   const packagingIndex = pageText.indexOf("涪陵榨菜包装设计");
+  const pillBoxIndex = pageText.indexOf("智能药盒设计");
   expect(walltimeIndex).toBeGreaterThanOrEqual(0);
   expect(finalShowcaseIndex).toBeGreaterThan(walltimeIndex);
   expect(designerIndex).toBeGreaterThan(finalShowcaseIndex);
-  expect(packagingIndex).toBeGreaterThan(designerIndex);
+  expect(coolingIndex).toBeGreaterThan(designerIndex);
+  expect(mouseIndex).toBeGreaterThan(coolingIndex);
+  expect(packagingIndex).toBeGreaterThan(mouseIndex);
+  expect(pillBoxIndex).toBeGreaterThan(packagingIndex);
 
   expect(screen.getByText(/PRODUCT DESIGNER/i)).toBeInTheDocument();
   expect(screen.getByText(/从生活里观察/i)).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /其他精选项目/i })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /手机散热风扇/i })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /鼠标产品渲染/i })).toBeInTheDocument();
   expect(screen.getByRole("heading", { name: /涪陵榨菜包装设计/i })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /智能药盒设计/i })).toBeInTheDocument();
   expect(screen.getByText(/游戏手柄/i)).toBeInTheDocument();
   expect(screen.getByText(/无线蓝牙耳机/i)).toBeInTheDocument();
-  expect(screen.getByText(/手机散热风扇/i)).toBeInTheDocument();
   expect(screen.getByText(/便携式果汁机/i)).toBeInTheDocument();
   expect(screen.getByText("13333384178")).toBeInTheDocument();
   expect(screen.getByText("3600376954@qq.com")).toBeInTheDocument();
@@ -85,7 +93,28 @@ test("renders Walltime before the designer profile and other projects", () => {
     "src",
     "/assets/walltime/walltime-final-board-web.jpg"
   );
-  expect(container.querySelectorAll(".other-project")).toHaveLength(5);
+  const projectTitles = [...container.querySelectorAll(".other-project h3")].map((heading) => heading.textContent);
+  expect(projectTitles).toEqual([
+    "手机散热风扇",
+    "鼠标产品渲染",
+    "涪陵榨菜包装设计",
+    "智能药盒设计",
+    "游戏手柄",
+    "无线蓝牙耳机",
+    "便携式果汁机",
+  ]);
+  expect(container.querySelectorAll(".other-project")).toHaveLength(7);
+  expect(container.querySelectorAll(".other-project .project-image-link")).toHaveLength(15);
+  expect(container.querySelector(".other-project:first-child img")).toHaveAttribute(
+    "src",
+    "/assets/selected-projects/cooling-fan-overview-4k.jpg"
+  );
+  expect(container.querySelectorAll(".other-project")[1].querySelectorAll("img")).toHaveLength(3);
+  expect(container.querySelectorAll(".other-project")[3].querySelector("img")).toHaveAttribute(
+    "src",
+    "/assets/selected-projects/smart-pill-box-board.jpg"
+  );
+  expect(container.querySelectorAll(".other-project")[6].querySelectorAll("img")).toHaveLength(3);
   const navigation = screen.getByRole("navigation", { name: "主导航" });
   const menuButton = screen.getByRole("button", { name: "打开菜单" });
   expect(navigation).toBeInTheDocument();
@@ -97,6 +126,6 @@ test("renders Walltime before the designer profile and other projects", () => {
   expect(container.querySelector(".opening-screen")).toBeNull();
   expect(container.querySelector(".studio-hero")).toBeNull();
   expect(pageText).not.toMatch(
-    /Viktor|Oddy|CodeNest|Taught by Industry Professionals|价格|虚构评价|药盒|磁吸|小车|小红书|PPT|PDF|Codex|Claude|ChatGPT/
+    /Viktor|Oddy|CodeNest|Taught by Industry Professionals|价格|虚构评价|小车|小红书|PPT|PDF|Codex|Claude|ChatGPT/
   );
 });

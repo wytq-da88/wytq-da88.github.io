@@ -63,63 +63,180 @@ const capabilities = [
 const otherProjects = [
   {
     number: "01",
+    title: "手机散热风扇",
+    subtitle: "游戏场景数码配件",
+    meta: "结构表达 / 产品渲染 / CMF",
+    description:
+      "以横向夹持结构、独立制冷按键、档位显示和高对比红黑 CMF，强化游戏外设的功能识别与速度感。",
+    images: [
+      {
+        src: "/assets/selected-projects/cooling-fan-overview-4k.jpg",
+        alt: "手机散热风扇安装在手机背面的完整产品渲染",
+        label: "整体结构",
+        width: 3840,
+        height: 1920,
+      },
+      {
+        src: "/assets/selected-projects/cooling-fan-detail-4k.jpg",
+        alt: "手机散热风扇制冷按键与档位显示细节渲染",
+        label: "控制与 CMF 细节",
+        width: 3840,
+        height: 1920,
+      },
+    ],
+  },
+  {
+    number: "02",
+    title: "鼠标产品渲染",
+    subtitle: "简洁曲面与人体工学表达",
+    meta: "Rhino / KeyShot / 曲面建模",
+    description:
+      "通过蓝灰双色分件、连续上壳曲面、滚轮中轴和底部脚垫布局，呈现办公鼠标的造型控制与完整三视角表达。",
+    images: [
+      {
+        src: "/assets/selected-projects/mouse-angle-left-4k.jpg",
+        alt: "蓝色无线鼠标左前侧产品渲染",
+        label: "左前视角",
+        width: 3840,
+        height: 2159,
+      },
+      {
+        src: "/assets/selected-projects/mouse-angle-right-4k.jpg",
+        alt: "蓝色无线鼠标右前侧产品渲染",
+        label: "右前视角",
+        width: 3840,
+        height: 2159,
+      },
+      {
+        src: "/assets/selected-projects/mouse-bottom-4k.jpg",
+        alt: "蓝色无线鼠标底部结构渲染",
+        label: "底部结构",
+        width: 3840,
+        height: 2159,
+      },
+    ],
+  },
+  {
+    number: "03",
     title: "涪陵榨菜包装设计",
     subtitle: "地域文化与现代货架体验",
     meta: "品牌视觉 / 包装结构 / 系列化",
     description:
       "从青菜头、山城地貌、传统工艺与下饭场景中提炼视觉资产，建立品牌识别、陈列包装和文化衍生品系统。",
-    image: "/assets/packaging/fuling-production-board-web.jpg",
-    detail: "/assets/packaging/fuling-brand-board-web.jpg",
-    imageAlt: "涪陵榨菜包装结构与应用展板",
-    detailAlt: "涪陵榨菜品牌定位与视觉系统展板",
+    layout: "portrait",
+    images: [
+      {
+        src: "/assets/packaging/fuling-production-board.png",
+        alt: "涪陵榨菜包装结构与应用展板",
+        label: "包装结构与应用",
+        width: 1054,
+        height: 1492,
+      },
+      {
+        src: "/assets/packaging/fuling-brand-board.png",
+        alt: "涪陵榨菜品牌定位与视觉系统展板",
+        label: "品牌定位与视觉系统",
+        width: 1054,
+        height: 1492,
+      },
+    ],
   },
   {
-    number: "02",
+    number: "04",
+    title: "智能药盒设计",
+    subtitle: "磁吸结构与单次取药体验",
+    meta: "产品改良 / 结构设计 / 使用流程",
+    description:
+      "通过磁吸开合、四个独立药仓、侧边单仓释放和手机背部吸附，让日常分药、取药与携带更加清晰便捷。",
+    layout: "portrait",
+    images: [
+      {
+        src: "/assets/selected-projects/smart-pill-box-board.jpg",
+        alt: "便携式磁吸智能药盒完整设计展板",
+        label: "完整设计展板",
+        width: 3508,
+        height: 4961,
+      },
+    ],
+  },
+  {
+    number: "05",
     title: "游戏手柄",
     subtitle: "消费电子建模与渲染",
     meta: "Rhino / KeyShot / 硬表面建模",
     description:
       "围绕握持比例、壳体曲面、按键布局与装配边界，呈现消费电子产品的形体控制和细节完成度。",
-    image: "/assets/optimized/game-console-wide-web.jpg",
-    detail: "/assets/optimized/game-console-front-web.jpg",
-    imageAlt: "游戏手柄产品渲染",
-    detailAlt: "游戏手柄正面细节",
+    images: [
+      {
+        src: "/assets/optimized/game-console-wide-web.jpg",
+        alt: "游戏手柄产品渲染",
+        label: "整体产品渲染",
+        width: 1600,
+        height: 1440,
+      },
+      {
+        src: "/assets/optimized/game-console-front-web.jpg",
+        alt: "游戏手柄正面细节",
+        label: "正面细节",
+        width: 1400,
+        height: 1260,
+      },
+    ],
   },
   {
-    number: "03",
+    number: "06",
     title: "无线蓝牙耳机",
     subtitle: "小型数码产品 CMF 表达",
     meta: "产品渲染 / CMF / 细节控制",
     description:
       "通过充电仓开合、耳机收纳与圆角细节，呈现小体量消费电子的精致感和生活方式气质。",
-    image: "/assets/optimized/earbuds-open-web.jpg",
-    detail: "/assets/earbuds-detail-web.jpg",
-    imageAlt: "无线蓝牙耳机开盖渲染",
-    detailAlt: "无线蓝牙耳机细节",
+    images: [
+      {
+        src: "/assets/optimized/earbuds-open-web.jpg",
+        alt: "无线蓝牙耳机开盖渲染",
+        label: "开盖状态",
+        width: 1400,
+        height: 1184,
+      },
+      {
+        src: "/assets/earbuds-detail-web.jpg",
+        alt: "无线蓝牙耳机细节",
+        label: "产品细节",
+        width: 1800,
+        height: 1522,
+      },
+    ],
   },
   {
-    number: "04",
-    title: "手机散热风扇",
-    subtitle: "游戏场景数码配件",
-    meta: "结构表达 / 产品渲染 / CMF",
-    description:
-      "以夹持结构、风道层级、状态屏和高对比材质，强化游戏外设的功能识别与速度感。",
-    image: "/assets/project-boards/cooling-board.jpg",
-    detail: "/assets/cooling-fan.jpg",
-    imageAlt: "手机散热风扇设计展板",
-    detailAlt: "手机散热风扇产品渲染",
-  },
-  {
-    number: "05",
+    number: "07",
     title: "便携式果汁机",
-    subtitle: "从使用场景到产品定义",
-    meta: "用户研究 / 产品定义 / 建模",
+    subtitle: "透明杯体与便携搅拌结构",
+    meta: "产品建模 / 透明材质 / 结构细节",
     description:
-      "从家庭、办公与户外饮用场景中提炼容量、握持、清洗和安全启动需求，并转化为完整产品方案。",
-    image: "/assets/project-boards/juicer-board.jpg",
-    detail: "/assets/juicer-process.jpg",
-    imageAlt: "便携式果汁机设计展板",
-    detailAlt: "便携式果汁机设计过程",
+      "以透明杯体、可视刀组、圆柱电机底座和简洁状态按键构成便携搅拌方案，重点呈现透明材质与内部结构关系。",
+    images: [
+      {
+        src: "/assets/selected-projects/portable-juicer-overview-6k.jpg",
+        alt: "便携式果汁机完整产品渲染",
+        label: "整体造型",
+        width: 6048,
+        height: 3777,
+      },
+      {
+        src: "/assets/selected-projects/portable-juicer-detail-6k.jpg",
+        alt: "便携式果汁机刀组与控制底座细节渲染",
+        label: "刀组与控制细节",
+        width: 6048,
+        height: 3777,
+      },
+      {
+        src: "/assets/selected-projects/portable-juicer-front-6k.png",
+        alt: "便携式果汁机正面产品渲染",
+        label: "正面视角",
+        width: 6048,
+        height: 3777,
+      },
+    ],
   },
 ];
 
@@ -530,7 +647,7 @@ export default function WalltimePortfolio() {
         <div className="works-heading">
           <p className="section-label">SELECTED WORKS</p>
           <h2 id="works-title">其他精选项目</h2>
-          <p>壁时之后，继续展示包装系统、消费电子建模、CMF 与用户场景研究。</p>
+          <p>壁时之后，继续展示消费电子、鼠标建模、包装系统、健康产品与生活小家电。</p>
         </div>
         <div className="other-project-list">
           {otherProjects.map((project, index) => (
@@ -591,10 +708,15 @@ function BoardLink({ src, original, alt, label }) {
 }
 
 function OtherProject({ project, reverse }) {
+  const [primaryImage, ...supportImages] = project.images;
+
   return (
-    <motion.article className={`other-project ${reverse ? "reverse" : ""}`} {...reveal}>
+    <motion.article
+      className={`other-project ${reverse ? "reverse" : ""} ${project.layout ? `project-${project.layout}` : ""}`}
+      {...reveal}
+    >
       <div className="other-project-media">
-        <PortfolioImage src={project.image} alt={project.imageAlt} />
+        <ProjectImageLink image={primaryImage} title={project.title} />
         <span>{project.meta}</span>
       </div>
       <div className="other-project-copy">
@@ -602,14 +724,34 @@ function OtherProject({ project, reverse }) {
         <h3>{project.title}</h3>
         <h4>{project.subtitle}</h4>
         <p>{project.description}</p>
-        <div className="other-project-detail">
-          <PortfolioImage src={project.detail} alt={project.detailAlt} />
-        </div>
       </div>
+      {supportImages.length > 0 && (
+        <div className={`other-project-gallery gallery-count-${supportImages.length}`}>
+          {supportImages.map((image) => (
+            <ProjectImageLink image={image} title={project.title} key={image.src} />
+          ))}
+        </div>
+      )}
     </motion.article>
   );
 }
 
-function PortfolioImage({ src, alt }) {
-  return <img src={src} alt={alt} loading="lazy" decoding="async" />;
+function ProjectImageLink({ image, title }) {
+  return (
+    <a
+      className="project-image-link"
+      href={image.src}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={`查看${title}${image.label}高清原图`}
+      style={{ maxWidth: `${image.width}px` }}
+    >
+      <PortfolioImage {...image} />
+      <span>{image.label}<ArrowUpRight size={15} /></span>
+    </a>
+  );
+}
+
+function PortfolioImage({ src, alt, width, height }) {
+  return <img src={src} alt={alt} width={width} height={height} loading="lazy" decoding="async" />;
 }
