@@ -1,5 +1,5 @@
-import StudioPortfolio from "../components/studio-portfolio";
+import WalltimePortfolio from "../components/walltime-portfolio";
 
 export default function Page() {
-  return <StudioPortfolio />;
+  return <WalltimePortfolio />;
 }

@@ -1,49 +1,78 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { expect, test } from "vitest";
 import Page from "../app/page";
 
-test("renders the redesigned public product design portfolio", () => {
+test("renders Walltime before the designer profile and other projects", () => {
   const { container } = render(<Page />);
   const pageText = container.textContent;
 
-  expect(screen.getAllByText(/曹佳航/i).length).toBeGreaterThan(0);
+  expect(screen.getByRole("heading", { level: 1, name: /壁时/i })).toBeInTheDocument();
+  expect(screen.getByText(/01 \/ FEATURED PROJECT/i)).toBeInTheDocument();
+  expect(screen.getByText(/AI 桌面情绪陪伴产品/i)).toBeInTheDocument();
+  expect(screen.getByText(/以时间、光影与情绪反馈为核心/i)).toBeInTheDocument();
+  expect(screen.getByRole("link", { name: /查看壁时项目/i })).toHaveAttribute("href", "#walltime-case");
+
+  const video = container.querySelector(".hero-video video");
+  expect(video).not.toBeNull();
+  expect(video).toHaveAttribute("autoplay");
+  expect(video.muted).toBe(true);
+  expect(video).toHaveAttribute("loop");
+  expect(video).toHaveAttribute("playsinline");
+  expect(video).not.toHaveAttribute("controls");
+  expect(video).toHaveAttribute("poster", "/assets/walltime/walltime-poster.jpg");
+  expect(video.querySelector("source")).toHaveAttribute("src", "/assets/walltime/walltime-hero.mp4");
+
+  [
+    "项目背景",
+    "用户使用场景",
+    "设计机会点",
+    "产品概念",
+    "外观造型推导",
+    "功能与交互逻辑",
+    "灯光和情绪反馈",
+    "材料与颜色",
+    "产品细节",
+    "最终效果展示",
+  ].forEach((title) => {
+    expect(screen.getByRole("heading", { name: title })).toBeInTheDocument();
+  });
+
+  const walltimeIndex = pageText.indexOf("壁时");
+  const finalShowcaseIndex = pageText.indexOf("最终效果展示");
+  const designerIndex = pageText.indexOf("曹佳航");
+  const packagingIndex = pageText.indexOf("涪陵榨菜包装设计");
+  expect(walltimeIndex).toBeGreaterThanOrEqual(0);
+  expect(finalShowcaseIndex).toBeGreaterThan(walltimeIndex);
+  expect(designerIndex).toBeGreaterThan(finalShowcaseIndex);
+  expect(packagingIndex).toBeGreaterThan(designerIndex);
+
+  expect(screen.getByText(/PRODUCT DESIGNER/i)).toBeInTheDocument();
   expect(screen.getByText(/从生活里观察/i)).toBeInTheDocument();
-  expect(screen.getAllByText(/涪陵榨菜包装设计/i).length).toBeGreaterThan(0);
-  expect(screen.getByText(/地域文化、传统工艺与现代货架体验/i)).toBeInTheDocument();
-  expect(screen.getByText(/包装结构与应用系统/i)).toBeInTheDocument();
-  expect(screen.getAllByText(/品牌定位与视觉系统/i).length).toBeGreaterThanOrEqual(2);
-  expect(screen.getByText(/更多产品项目/i)).toBeInTheDocument();
-  expect(screen.getAllByText(/壁时/i).length).toBeGreaterThan(0);
+  expect(screen.getByRole("heading", { name: /其他精选项目/i })).toBeInTheDocument();
+  expect(screen.getByRole("heading", { name: /涪陵榨菜包装设计/i })).toBeInTheDocument();
   expect(screen.getByText(/游戏手柄/i)).toBeInTheDocument();
   expect(screen.getByText(/无线蓝牙耳机/i)).toBeInTheDocument();
   expect(screen.getByText(/手机散热风扇/i)).toBeInTheDocument();
   expect(screen.getByText(/便携式果汁机/i)).toBeInTheDocument();
-  expect(screen.getAllByText(/设计能力/i).length).toBeGreaterThanOrEqual(2);
   expect(screen.getByText("13333384178")).toBeInTheDocument();
   expect(screen.getByText("3600376954@qq.com")).toBeInTheDocument();
 
   const images = [...container.querySelectorAll("img")];
-  expect(images.length).toBeGreaterThanOrEqual(14);
+  expect(images.length).toBeGreaterThanOrEqual(16);
   expect(images.every((image) => image.getAttribute("decoding") === "async")).toBe(true);
-  expect(container.querySelectorAll(".hero-board img")).toHaveLength(2);
-  expect(container.querySelector(".hero-board-left img")).toHaveAttribute(
-    "src",
-    "/assets/packaging/fuling-production-board-web.jpg"
-  );
-  expect(container.querySelector(".hero-board-right img")).toHaveAttribute(
-    "src",
-    "/assets/packaging/fuling-brand-board-web.jpg"
-  );
-  expect(container.querySelectorAll(".packaging-board img")).toHaveLength(2);
-  expect(container.querySelectorAll(".packaging-board img")[0]).toHaveAttribute(
-    "src",
-    "/assets/packaging/fuling-production-board-web.jpg"
-  );
-  expect(screen.getByRole("navigation", { name: "主导航" })).toBeInTheDocument();
-  expect(container.querySelectorAll("article").length).toBeGreaterThanOrEqual(14);
-  expect(container.querySelector(".opening-screen")).not.toBeNull();
-  expect(container.querySelector(".opening-product img")).toHaveAttribute("src", "/assets/optimized/walltime-front-web.jpg");
+  expect(container.querySelectorAll(".final-boards img")).toHaveLength(2);
+  expect(container.querySelectorAll(".other-project")).toHaveLength(5);
+  const navigation = screen.getByRole("navigation", { name: "主导航" });
+  const menuButton = screen.getByRole("button", { name: "打开菜单" });
+  expect(navigation).toBeInTheDocument();
+  fireEvent.click(menuButton);
+  expect(navigation).toHaveClass("is-open");
+  expect(document.body.style.overflow).toBe("hidden");
+  fireEvent.keyDown(window, { key: "Escape" });
+  expect(navigation).not.toHaveClass("is-open");
+  expect(container.querySelector(".opening-screen")).toBeNull();
+  expect(container.querySelector(".studio-hero")).toBeNull();
   expect(pageText).not.toMatch(
-    /黑金|东方未来感|药盒|磁吸|小车|小红书|清爽版|旧版|正在打开|后续|下一步|PPT|PDF|给你|帮你|建议你|怎么做|投递|面试官|求职|课程截图|删掉|不适合|Codex|Claude|ChatGPT/
+    /Viktor|Oddy|CodeNest|Taught by Industry Professionals|价格|虚构评价|药盒|磁吸|小车|小红书|PPT|PDF|Codex|Claude|ChatGPT/
   );
 });
