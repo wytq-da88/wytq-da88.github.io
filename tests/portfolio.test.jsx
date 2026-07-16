@@ -76,13 +76,17 @@ test("renders Walltime before the designer profile and other projects", () => {
     "src",
     "/assets/walltime/walltime-logo-web.jpg"
   );
+  expect(container.querySelector(".walltime-feature-board img")).toHaveAttribute(
+    "src",
+    "/assets/walltime/walltime-feature-board-hd.png"
+  );
   expect(container.querySelector(".concept-stage img")).toHaveAttribute(
     "src",
     "/assets/walltime/walltime-concept-render-web.jpg"
   );
   expect(container.querySelector(".app-showcase img")).toHaveAttribute(
     "src",
-    "/assets/walltime/walltime-app-web.jpg"
+    "/assets/walltime/walltime-app-hd.png"
   );
   expect(container.querySelector(".exploded-main img")).toHaveAttribute(
     "src",

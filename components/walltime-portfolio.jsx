@@ -448,6 +448,16 @@ export default function WalltimePortfolio() {
               </figcaption>
             </figure>
           </div>
+          <div className="walltime-feature-board">
+            <BoardLink
+              src="/assets/walltime/walltime-feature-board-hd.png"
+              original="/assets/walltime/walltime-feature-board-hd.png"
+              alt="壁时节气时光机核心功能、细节、场景与产品参数完整展板"
+              label="壁时核心功能完整展板"
+              width={1536}
+              height={1024}
+            />
+          </div>
         </NarrativeBand>
 
         <NarrativeBand
@@ -539,7 +549,20 @@ export default function WalltimePortfolio() {
             ))}
           </div>
           <figure className="app-showcase">
-            <PortfolioImage src="/assets/walltime/walltime-app-web.jpg" alt="壁时手机 App 启动页、首页、节气、场景控制与提醒日程界面" />
+            <a
+              className="app-image-link"
+              href="/assets/walltime/walltime-app-hd.png"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="查看壁时手机 App 界面高清原图"
+            >
+              <PortfolioImage
+                src="/assets/walltime/walltime-app-hd.png"
+                alt="壁时手机 App 启动页、首页、节气、场景控制与提醒日程界面"
+                width={1672}
+                height={941}
+              />
+            </a>
             <figcaption>
               <span>APP INTERFACE</span>
               从设备状态到节气解读、灯光控制与日程提醒，形成产品与手机端的完整体验闭环。
@@ -698,10 +721,10 @@ function NarrativeBand({ number, eyebrow, title, text, dark = false, children })
   );
 }
 
-function BoardLink({ src, original, alt, label }) {
+function BoardLink({ src, original, alt, label, width, height }) {
   return (
     <a href={original} target="_blank" rel="noreferrer" aria-label={`${label}高清原图`}>
-      <PortfolioImage src={src} alt={alt} />
+      <PortfolioImage src={src} alt={alt} width={width} height={height} />
       <span>{label}<ArrowUpRight size={15} /></span>
     </a>
   );

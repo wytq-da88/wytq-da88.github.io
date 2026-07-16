@@ -510,6 +510,36 @@ video {
   line-height: 1.7;
 }
 
+.walltime-feature-board {
+  width: min(1180px, 100%);
+  margin: 22px auto 0;
+}
+
+.walltime-feature-board a {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line-dark);
+  background: #050807;
+}
+
+.walltime-feature-board img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+.walltime-feature-board a > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 15px 17px;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
 .background-logo figcaption span {
   color: var(--accent);
   font-size: 0.68rem;
@@ -674,10 +704,15 @@ video {
 }
 
 .app-showcase img {
+  display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1065 / 799;
+  aspect-ratio: 1672 / 941;
   object-fit: contain;
+}
+
+.app-image-link {
+  display: block;
 }
 
 .app-showcase figcaption {
