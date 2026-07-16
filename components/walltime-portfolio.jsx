@@ -319,8 +319,17 @@ export default function WalltimePortfolio() {
           title="项目背景"
           text="深夜学习、居家办公与长期屏幕使用，使时间焦虑和情绪疲惫叠加。传统计时器强调效率，却很少回应专注过程中的情绪变化。"
         >
-          <div className="background-visual">
-            <PortfolioImage src="/assets/walltime/walltime-concept-web.jpg" alt="壁时项目背景、用户痛点与概念展板" />
+          <div className="background-story">
+            <div className="background-visual">
+              <PortfolioImage src="/assets/walltime/walltime-background-web.jpg" alt="壁时核心功能、适用场景与使用方式展板" />
+            </div>
+            <figure className="background-logo">
+              <PortfolioImage src="/assets/walltime/walltime-logo-web.jpg" alt="壁时智愈之境品牌标志" />
+              <figcaption>
+                <span>品牌标识</span>
+                玉璧、山水与时间轨迹共同构成“壁时”的东方识别。
+              </figcaption>
+            </figure>
           </div>
         </NarrativeBand>
 
@@ -368,7 +377,7 @@ export default function WalltimePortfolio() {
           dark
         >
           <div className="concept-stage">
-            <PortfolioImage src="/assets/optimized/walltime-front-web.jpg" alt="壁时正面产品概念渲染" />
+            <PortfolioImage src="/assets/walltime/walltime-concept-render-web.jpg" alt="壁时桌面情绪陪伴产品概念渲染" />
             <div className="concept-orbit orbit-one" />
             <div className="concept-orbit orbit-two" />
           </div>
@@ -400,7 +409,7 @@ export default function WalltimePortfolio() {
           number="06"
           eyebrow="FUNCTION & INTERACTION"
           title="功能与交互逻辑"
-          text="通过靠近、唤醒、旋转、语音和休眠形成完整操作闭环，让主要功能在不打开手机的情况下完成。"
+          text="产品本体完成靠近、唤醒、旋转与语音等高频操作，手机 App 承担节气信息、场景灯光、提醒日程和个性化设置。"
           dark
         >
           <div className="interaction-flow">
@@ -412,6 +421,13 @@ export default function WalltimePortfolio() {
               </article>
             ))}
           </div>
+          <figure className="app-showcase">
+            <PortfolioImage src="/assets/walltime/walltime-app-web.jpg" alt="壁时手机 App 启动页、首页、节气、场景控制与提醒日程界面" />
+            <figcaption>
+              <span>APP INTERFACE</span>
+              从设备状态到节气解读、灯光控制与日程提醒，形成产品与手机端的完整体验闭环。
+            </figcaption>
+          </figure>
         </NarrativeBand>
 
         <NarrativeBand
@@ -452,14 +468,14 @@ export default function WalltimePortfolio() {
           number="09"
           eyebrow="PRODUCT DETAILS"
           title="产品细节"
-          text="星图描金、中央透明层、环形屏幕、底座金线和可替换节气模块共同建立近距离观看时的精致度。"
+          text="爆炸结构展示节气外环、中央显示模组、悬浮连接件与底座内部系统，明确产品从视觉造型到工程装配的层级关系。"
         >
           <div className="detail-layout">
-            <div className="detail-main">
-              <PortfolioImage src="/assets/optimized/walltime-detail-web.jpg" alt="壁时产品细节渲染" />
+            <div className="detail-main exploded-main">
+              <PortfolioImage src="/assets/walltime/walltime-exploded.png" alt="壁时产品爆炸结构图" />
             </div>
             <div className="detail-notes">
-              {["24 节气模块", "全彩圆形显示", "悬浮发光底座", "大漆描金 CMF"].map((item) => (
+              {["24 节气模块化外环", "中央圆形显示模组", "悬浮连接与支撑结构", "感应、供电与灯光底座"].map((item) => (
                 <span key={item}>{item}</span>
               ))}
             </div>
@@ -470,21 +486,15 @@ export default function WalltimePortfolio() {
           number="10"
           eyebrow="FINAL SHOWCASE"
           title="最终效果展示"
-          text="最终方案将文化表达、桌面交互和情绪陪伴整合为完整产品系统，并延展至 App 联动、礼盒包装和场景传播。"
+          text="最终方案将东方文化表达、桌面交互、技术系统与情绪陪伴整合为完整产品，并延展至 App 联动和多场景使用。"
           dark
         >
           <div className="final-boards">
             <BoardLink
-              src="/assets/walltime/walltime-system-web.jpg"
-              original="/assets/walltime/walltime-system.png"
-              alt="壁时产品结构、功能系统、交互和 CMF 完整展板"
-              label="结构与功能系统"
-            />
-            <BoardLink
-              src="/assets/walltime/walltime-scenario-web.jpg"
-              original="/assets/walltime/walltime-scenario.png"
-              alt="壁时使用场景、品牌传播和最终展示完整展板"
-              label="场景应用与品牌传播"
+              src="/assets/walltime/walltime-final-board-web.jpg"
+              original="/assets/walltime/walltime-final-board.png"
+              alt="壁时产品设计最终效果完整展板"
+              label="壁时最终设计展板"
             />
           </div>
         </NarrativeBand>

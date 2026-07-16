@@ -60,7 +60,31 @@ test("renders Walltime before the designer profile and other projects", () => {
   const images = [...container.querySelectorAll("img")];
   expect(images.length).toBeGreaterThanOrEqual(16);
   expect(images.every((image) => image.getAttribute("decoding") === "async")).toBe(true);
-  expect(container.querySelectorAll(".final-boards img")).toHaveLength(2);
+  expect(container.querySelector(".background-visual img")).toHaveAttribute(
+    "src",
+    "/assets/walltime/walltime-background-web.jpg"
+  );
+  expect(container.querySelector(".background-logo img")).toHaveAttribute(
+    "src",
+    "/assets/walltime/walltime-logo-web.jpg"
+  );
+  expect(container.querySelector(".concept-stage img")).toHaveAttribute(
+    "src",
+    "/assets/walltime/walltime-concept-render-web.jpg"
+  );
+  expect(container.querySelector(".app-showcase img")).toHaveAttribute(
+    "src",
+    "/assets/walltime/walltime-app-web.jpg"
+  );
+  expect(container.querySelector(".exploded-main img")).toHaveAttribute(
+    "src",
+    "/assets/walltime/walltime-exploded.png"
+  );
+  expect(container.querySelectorAll(".final-boards img")).toHaveLength(1);
+  expect(container.querySelector(".final-boards img")).toHaveAttribute(
+    "src",
+    "/assets/walltime/walltime-final-board-web.jpg"
+  );
   expect(container.querySelectorAll(".other-project")).toHaveLength(5);
   const navigation = screen.getByRole("navigation", { name: "主导航" });
   const menuButton = screen.getByRole("button", { name: "打开菜单" });
