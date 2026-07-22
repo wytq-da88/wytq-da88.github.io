@@ -1,9 +1,9 @@
 import "./walltime.css";
 
 export const metadata = {
-  title: "壁时｜曹佳航产品设计作品集",
+  title: "曹佳航｜AI+智能产品设计作品集",
   description:
-    "以壁时 AI 桌面情绪陪伴产品为首个完整案例，展示曹佳航在智能产品、消费电子、CMF、包装视觉与用户研究方面的设计作品。",
+    "曹佳航的产品设计作品集，聚焦 AI+智能产品、消费电子、三维建模、CMF与视觉表达，面向产品设计实习与智能硬件方向。",
 };
 
 export default function RootLayout({ children }) {

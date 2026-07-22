@@ -30,6 +30,8 @@ const navItems = [
   ["联系", "#contact"],
 ];
 
+const resumeHref = "/downloads/resume-cao-jiahang-ai-product-design.pdf";
+
 const interactionSteps = [
   ["01", "靠近", "ToF 感应识别用户进入桌面空间。"],
   ["02", "唤醒", "环形光效渐亮，以低打扰方式回应。"],
@@ -328,7 +330,14 @@ export default function WalltimePortfolio() {
               {label}
             </a>
           ))}
+          <a className="resume-download mobile-resume-link" href={resumeHref} download>
+            下载简历
+          </a>
         </nav>
+
+        <a className="resume-download desktop-resume-link" href={resumeHref} download>
+          下载简历 <ArrowUpRight size={15} />
+        </a>
 
         <button
           type="button"
@@ -404,6 +413,11 @@ export default function WalltimePortfolio() {
             <a className="primary-cta" href="#walltime-case">
               查看壁时项目 <ArrowRight size={17} />
             </a>
+            <div className="hero-profile-line" aria-label="求职信息">
+              <span>产品设计专科在读</span>
+              <span>AI + 智能产品方向</span>
+              <span>2026.08 可实习</span>
+            </div>
           </motion.div>
         </div>
 
@@ -654,6 +668,16 @@ export default function WalltimePortfolio() {
           <p>
             我关注智能桌面产品、消费电子、CMF 与包装视觉。设计从真实场景和使用动作出发，通过研究、形态推导、三维建模与视觉叙事，让产品逻辑和情绪体验同时成立。
           </p>
+          <div className="about-job-card">
+            <div>
+              <span>求职方向</span>
+              <strong>AI + 智能产品设计实习</strong>
+            </div>
+            <p>可从产品设计助理、智能硬件、AI辅助设计或交互视觉岗位切入真实项目。</p>
+            <a href={resumeHref} download>
+              下载一页版简历 <ArrowUpRight size={15} />
+            </a>
+          </div>
           <div className="about-capabilities">
             {capabilities.map(([Icon, title, text]) => (
               <article key={title}>
@@ -692,6 +716,11 @@ export default function WalltimePortfolio() {
             <Mail size={18} />
             <span>邮箱</span>
             <strong>{contact.email}</strong>
+          </a>
+          <a className="resume-contact-link" href={resumeHref} download>
+            <ArrowUpRight size={18} />
+            <span>投递材料</span>
+            <strong>下载优化版简历</strong>
           </a>
         </div>
         <footer>

@@ -64,6 +64,12 @@ test("renders Walltime before the designer profile and other projects", () => {
   expect(screen.getByText(/便携式果汁机/i)).toBeInTheDocument();
   expect(screen.getByText("13333384178")).toBeInTheDocument();
   expect(screen.getByText("3600376954@qq.com")).toBeInTheDocument();
+  expect(screen.getAllByRole("link", { name: /下载简历|下载一页版简历|下载优化版简历/i }).length).toBeGreaterThanOrEqual(3);
+  expect(screen.getAllByRole("link", { name: /下载简历|下载一页版简历|下载优化版简历/i }).every((link) =>
+    link.getAttribute("href") === "/downloads/resume-cao-jiahang-ai-product-design.pdf"
+  )).toBe(true);
+  expect(screen.getByText(/AI \+ 智能产品方向/i)).toBeInTheDocument();
+  expect(screen.getByText(/2026\.08 可实习/i)).toBeInTheDocument();
 
   const images = [...container.querySelectorAll("img")];
   expect(images.length).toBeGreaterThanOrEqual(16);
